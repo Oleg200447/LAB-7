@@ -26,7 +26,7 @@ void symbolCheker(char* symbol)
 
 void correctNumber(int* num, char* str)
 {
-	while ((scanf_s("%d", &*num)) != 1 || getchar(0) != '\n' || *num<1 || *num > numOfWords(str, len(str)))
+	while ((scanf_s("%d", &*num)) != 1 || getchar() != '\n' || *num<1 || *num > numOfWords(str, len(str)))
 	{
 		if (*num > numOfWords(str, len(str)))
 			printf("There are only %d words.Input correct number:", numOfWords(str, len(str)));
@@ -66,7 +66,7 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1 || numOfWords(*str, len(*str)) < 1);
-		*str = (char*)realloc(*str, (len(*str) + 2) * 1);
+		/**str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));*/
 		break;
 	case 2:
 		do {
@@ -75,7 +75,7 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1);
-		*str = (char*)realloc(*str, (len(*str) + 2) * 1);
+		/**str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));*/
 		break;
 	case 3:
 		do {
@@ -84,7 +84,7 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1);
-		*str = (char*)realloc(*str, (len(*str) + 2) * 1);
+		/**str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));*/
 		break;
 	}
 }
@@ -143,22 +143,22 @@ void revK(char* str, int k)
 	revirse(str, start, end);
 }
 
-void addString(char** str1, char* str2, char symbol)
+void addString(char* str1, char* str2, char symbol)
 {
-	int size1 = len(*str1);
+	int size1 = len(str1);
 	int size2 = len(str2);
 	for (int i = 0; i < size1; i++)
 	{
-		if (*(*str1 + i) == symbol)
+		if (*(str1 + i) == symbol)
 		{
-			*str1 = (char*)realloc(*str1, (size1 + size2 + 2) * sizeof(char));
+			/**str1 = (char*)realloc(*str1, (size1 + size2 + 2) * sizeof(char));*/
 			size1 += (size2 + 2);
 			for (int j = size1 - 1; j > i + size2 - 1; j--)
 			{
-				*(*str1 + j) = *(*str1 + j - size2);
+				*(str1 + j) = *(str1 + j - size2);
 			}
 			for (int j = i, k = 0; k < size2; j++, k++)
-				*(*str1 + j) = *(str2 + k);
+				*(str1 + j) = *(str2 + k);
 			i += size2;
 		}
 	}
@@ -185,7 +185,7 @@ void taskSecond(void)
 	symbolCheker(&symbol);
 	char* str2 = memory();
 	inputStr(&str2, 3);
-	addString(&str1, str2, symbol);
+	addString(str1, str2, symbol);
 	printf("\nResult: ");
 	fputs(str1, stdout);
 }

@@ -9,7 +9,9 @@ void taskSecond(void);
 int main()
 {
 	int choise=0,task_choise=0;
-	void (**menu)() = (void(**)())calloc(2, sizeof(void(*)()));
+	/*void (**menu)() = NULL;*/
+	/*menu = (void(**)())calloc(2, sizeof(void(*)()));*/
+	void (*menu[2])();
 	menu[0] = taskFirst;
 	menu[1] = taskSecond;
 	do {
