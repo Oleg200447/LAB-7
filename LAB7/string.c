@@ -66,7 +66,7 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1 || numOfWords(*str, len(*str)) < 1);
-		*str = (char*)realloc(*str, (len(*str) + 2) * 1);
+		*str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));
 		break;
 	case 2:
 		do {
@@ -75,7 +75,7 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1);
-		*str = (char*)realloc(*str, (len(*str) + 2) * 1);
+		*str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));
 		break;
 	case 3:
 		do {
@@ -84,7 +84,7 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1);
-		*str = (char*)realloc(*str, (len(*str) + 2) * 1);
+		*str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));
 		break;
 	}
 }
