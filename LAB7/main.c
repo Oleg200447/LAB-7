@@ -5,7 +5,7 @@
 void taskFirst(void);
 
 void taskSecond(void);
-
+//
 int main()
 {
 	int choise=0,task_choise=0;
