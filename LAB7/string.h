@@ -1,6 +1,5 @@
 #pragma once
 
-void menuCorrect(int* task_choise);
 
 void symbolCheker(char* symbol);
 
@@ -18,7 +17,9 @@ int numOfWords(char* str, int size);
 
 void revK(char* str, int k);
 
-void addString(char* str1, char* str2, char symbol);
+void addString(char** str1, char* str2, char symbol);
+
+void menuCorrect(int* task);
 
 void taskFirst(void);
 

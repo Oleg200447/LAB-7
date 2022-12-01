@@ -4,14 +4,6 @@
 
 #define KB 1024
 
-void menuCorrect(int* task_choise)
-{
-	while ((scanf_s("%d", &*task_choise)) != 1 || *task_choise < 1 || *task_choise>3 || getchar() != '\n')
-	{
-		printf("Make right choise(1-3):");
-		rewind(stdin);
-	}
-}
 
 void symbolCheker(char* symbol)
 {
@@ -66,7 +58,11 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1 || numOfWords(*str, len(*str)) < 1);
-		/**str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));*/
+			char* storer = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));
+			if (storer != NULL)
+			{
+				*str = storer;
+			}
 		break;
 	case 2:
 		do {
@@ -75,7 +71,11 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1);
-		/**str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));*/
+		storer = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));
+		if (storer != NULL)
+		{
+			*str = storer;
+		}
 		break;
 	case 3:
 		do {
@@ -84,7 +84,11 @@ void inputStr(char** str, int variant)
 			fgets(*str, KB, stdin);
 			rewind(stdin);
 		} while (len(*str) < 1);
-		/**str = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));*/
+		storer = (char*)realloc(*str, (len(*str) + 2) * sizeof(char));
+		if (storer != NULL)
+		{
+			*str = storer;
+		}
 		break;
 	}
 }
@@ -143,24 +147,40 @@ void revK(char* str, int k)
 	revirse(str, start, end);
 }
 
-void addString(char* str1, char* str2, char symbol)
+void addString(char** str1, char* str2, char symbol)
 {
-	int size1 = len(str1);
+	int size1 = len(*str1);
 	int size2 = len(str2);
 	for (int i = 0; i < size1; i++)
 	{
-		if (*(str1 + i) == symbol)
+		if ((*str1 + i) != NULL)
 		{
-			/**str1 = (char*)realloc(*str1, (size1 + size2 + 2) * sizeof(char));*/
-			size1 += (size2 + 2);
-			for (int j = size1 - 1; j > i + size2 - 1; j--)
+			if (*(*str1 + i) == symbol)
 			{
-				*(str1 + j) = *(str1 + j - size2);
+				char *storer = (char*)realloc(*str1, (size1 + size2 + 2) * sizeof(char));
+				if (storer != NULL)
+				{
+					*str1 = storer;
+				}
+				size1 += (size2 + 2);
+				for (int j = size1 - 1; j > i + size2 - 1; j--)
+				{
+					*(*str1 + j) = *(*str1 + j - size2);
+				}
+				for (int j = i, k = 0; k < size2; j++, k++)
+					*(*str1 + j) = *(str2 + k);
+				i += size2;
 			}
-			for (int j = i, k = 0; k < size2; j++, k++)
-				*(str1 + j) = *(str2 + k);
-			i += size2;
 		}
+	}
+}
+
+void menuCorrect(int* task)
+{
+	while ((scanf_s("%d", &*task)) != 1 || *task < 1 || *task>3 || getchar() != '\n')
+	{
+		printf("Make right choise(1-3):");
+		rewind(stdin);
 	}
 }
 
@@ -185,7 +205,7 @@ void taskSecond(void)
 	symbolCheker(&symbol);
 	char* str2 = memory();
 	inputStr(&str2, 3);
-	addString(str1, str2, symbol);
+	addString(&str1, str2, symbol);
 	printf("\nResult: ");
 	fputs(str1, stdout);
 }
