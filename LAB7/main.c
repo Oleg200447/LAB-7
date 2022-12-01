@@ -24,7 +24,10 @@ int main()
 			menuCorrect(&task_choise);
 			system("cls");
 			if (task_choise == 3)
+			{
+				free(menu);
 				return 0;
+			}
 			menu[(task_choise - 1)]();
 			printf("\nDo you want to continue?(Yes-1/No-0):");
 			scanf_s("%d", &choise);
