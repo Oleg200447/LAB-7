@@ -194,6 +194,7 @@ void taskFirst(void)
 	revK(str, word_number);
 	printf("\nResult: ");
 	fputs(str, stdout);
+	free(str);
 }
 
 void taskSecond(void)
@@ -208,4 +209,6 @@ void taskSecond(void)
 	addString(&str1, str2, symbol);
 	printf("\nResult: ");
 	fputs(str1, stdout);
+	free(str1);
+	free(str2);
 }

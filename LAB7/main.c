@@ -29,5 +29,6 @@ int main()
 			system("cls");
 		} while (choise == 1);
 	}
+	free(menu);
 	return 0;
 }
