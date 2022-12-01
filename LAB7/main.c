@@ -11,11 +11,7 @@ int main()
 	int choise=0,task_choise=0;
 	void (**menu)() = NULL;
 	menu = (void(**)())calloc(2, sizeof(void(*)()));
-	/*if (!menu)
-	{
-		free(menu);
-		return 1;
-	}*/
+	
 	if (menu != NULL)
 	{
 		menu[0] = taskFirst;

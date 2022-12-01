@@ -147,10 +147,10 @@ void revK(char* str, int k)
 	revirse(str, start, end);
 }
 
-void addString(char** str1, char* str2, char symbol)
+void addString(char** str1, char** str2, char symbol)
 {
 	int size1 = len(*str1);
-	int size2 = len(str2);
+	int size2 = len(*str2);
 	for (int i = 0; i < size1; i++)
 	{
 		if ((*str1 + i) != NULL)
@@ -169,9 +169,9 @@ void addString(char** str1, char* str2, char symbol)
 				}
 				for (int j = i, k = 0; k < size2; j++, k++)
 				{
-					if ((str2) != NULL)
+					if ((*str2) != NULL)
 					{
-						*(*str1 + j) = *(str2 + k);
+						*(*str1 + j) = *(*str2 + k);
 					}
 				}
 				i += size2;
@@ -211,7 +211,7 @@ void taskSecond(void)
 	symbolCheker(&symbol);
 	char* str2 = memory();
 	inputStr(&str2, 3);
-	addString(&str1, str2, symbol);
+	addString(&str1, &str2, symbol);
 	printf("\nResult: ");
 	fputs(str1, stdout);
 	free(str1);
