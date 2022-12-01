@@ -168,7 +168,12 @@ void addString(char** str1, char* str2, char symbol)
 					*(*str1 + j) = *(*str1 + j - size2);
 				}
 				for (int j = i, k = 0; k < size2; j++, k++)
-					*(*str1 + j) = *(str2 + k);
+				{
+					if ((str2 + k) != NULL)
+					{
+						*(*str1 + j) = *(str2 + k);
+					}
+				}
 				i += size2;
 			}
 		}
