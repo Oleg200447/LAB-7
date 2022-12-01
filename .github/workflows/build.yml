@@ -28,7 +28,7 @@ jobs:
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }} gois
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }} Oleg200447_LAB-7
         run: >
           sonar-scanner 
           --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
