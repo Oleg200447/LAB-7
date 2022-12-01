@@ -25,10 +25,6 @@ jobs:
       - name: Run build-wrapper
         run: |
           build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild LAB7\LAB7.vcxproj /t:rebuild /nodeReuse:false
-      - name: Build tests
-        run: |
-          msbuild test1\test1.vcxproj
-          msbuild test2\test2.vcxproj
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
